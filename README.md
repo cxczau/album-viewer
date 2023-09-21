@@ -15,9 +15,11 @@ Write an unit test for task 2 to confirm the response from server when submit.
 node 18.7.0
 styled-components
 material-ui
+jest
 
 ## Progress Notes
 
 - initial project setup
+- add jest for unit tests
 - fetch album 1's photos from API
 - add material-ui and styled-components
