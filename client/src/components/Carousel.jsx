@@ -10,7 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { ImageContainer, PageContainer, SliderContainer } from "../styled";
 import { ALBUMS_API_ROUTE } from "../constants/httpRoutes";
 
-function App() {
+const Carousel = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
@@ -91,4 +91,4 @@ export const ImageItem = styled(ImageListItem)`
   cursor: pointer;
 `;
 
-export default App;
+export default Carousel;
