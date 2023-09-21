@@ -1,5 +1,5 @@
 const express = require("express");
-const sanitizeUser = require("./users");
+const createUser = require("./users");
 var fetch = require('node-fetch');
 
 const PORT = process.env.PORT || 3001;
@@ -27,24 +27,8 @@ app.get("/api/albums/:id/photos", async (req, res) => {
 });
 
 app.post("/api/users", async (req, res) => {
-  const sanitizedUser = sanitizeUser(req.body)
-  const response = await fetch(`http://127.0.0.1:3004/users`, {
-    method: 'POST',
-    body: JSON.stringify(sanitizedUser),
-    headers: {
-      Accept: 'application.json',
-      'Content-Type': 'application/json'
-    },
-  });
-
-  const data = await response.json();
-  const { status, ok, statusText: message } = response;
-  res.json({
-    data,
-    status,
-    ok,
-    message
-  });
+  const response = await createUser(req);
+  res.json(response);
 });
 
 app.post("/api/error", async (req, res) => {
