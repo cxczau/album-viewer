@@ -1,6 +1,11 @@
 # album-viewer
 
-## Use React, Node, Styled-Component, Redux and any other tools/packages.
+## Installation
+1. Run `yarn install` in `/client` and `/server` folders
+2. Run `yarn start` in `/client` and `/server` folders (separate terminals)
+3. Run `yarn start_dev` in `/server` folder to start a local copy of JSON Placeholder
+
+## Description
 
 ### Task 1
 Find out how https://jsonplaceholder.typicode.com/ REST API works and make a web page to display all photos in album id:1.
@@ -10,6 +15,8 @@ Create a page with a form to submit new user to https://jsonplaceholder.typicode
 
 ### Task 3
 Write an unit test for task 2 to confirm the response from server when submit.
+
+### Use React, Node, Styled-Component, Redux and any other tools/packages.
 
 ## Packages used
 node 18.7.0
@@ -32,3 +39,4 @@ jest
 - Pass response info to front end
 - jest test for sanitizeUser
 - jest test for createUser
+- User creation success component on form

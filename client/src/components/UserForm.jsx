@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Alert from '@mui/material/Alert';
 
 import { Card, PageContainer } from "../styled";
 import { USERS_API_ROUTE } from "../constants/httpRoutes";
@@ -16,6 +17,7 @@ const DEFAULT_FORM_STATE = {
 const UserForm = () => {
   const [form, setForm] = useState(DEFAULT_FORM_STATE);
   const [inflight, setInflight] = useState(false);
+  const [success, setSuccess] = useState(false);
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +32,8 @@ const UserForm = () => {
       }
     })
       .then(response => response.json())
-      .then(() => setInflight(false));
+      .then(() => setInflight(false))
+      .then(() => setSuccess(true));
   }
 
   const handleFormChange = (e) => {
@@ -38,6 +41,11 @@ const UserForm = () => {
       ...form,
       [e.target.name]: e.target.value,
     });
+  }
+
+  const handleReset = () => {
+    setForm(DEFAULT_FORM_STATE);
+    setSuccess(false);
   }
 
   return (
@@ -63,6 +71,7 @@ const UserForm = () => {
             ))}
             <Button variant="outlined" color="secondary" type="submit" disabled={inflight}>Register</Button>
           </form>
+          {success && <Alert severity="success">User successfully created! Click <Button color="secondary" onClick={handleReset}>here</Button> to reset the form!</Alert>}
         </Card>
       </PageContainer>
     </>
