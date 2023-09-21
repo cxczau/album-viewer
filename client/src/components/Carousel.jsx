@@ -8,7 +8,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { ImageContainer, PageContainer, SliderContainer } from "../styled";
-import { LOCALHOST_PLACEHOLDER_ROUTE } from "../constants/httpRoutes";
+import { ALBUMS_API_ROUTE } from "../constants/httpRoutes";
 
 function App() {
   const [data, setData] = useState([]);
@@ -18,15 +18,16 @@ function App() {
   const [lastPage, setLastPage] = useState(0);
 
   useEffect(() => {
-    fetch(`${LOCALHOST_PLACEHOLDER_ROUTE}/albums/1/photos?_page=${page}`)
+    fetch(`${ALBUMS_API_ROUTE}/1/photos?page=${page}`)
     // fetch(`${JSON_PLACEHOLDER_ROUTE}/albums/1/photos?_page=${page}`)
-      .then(response => {
-        const responseTotalCount = response.headers.get('X-Total-Count')
-        setTotalCount(responseTotalCount);
-        setLastPage(Math.floor(responseTotalCount / 10));
-        return response.json()
+      .then(response => response.json())
+      .then(json => {
+        const { data, last, total } = json;
+        setData(data);
+        setTotalCount(total);
+        setLastPage(last);
+        console.log(data);
       })
-      .then(json => setData(json))
   }, [page]);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ function App() {
     <PageContainer>
       <div>
         <h1>Album View</h1>
-        <p>Found {totalCount} photos for Album 1</p>
+        <p>Found {totalCount || '0'} photos for Album 1</p>
         <p>Click on the thumbnail to see the zoomed in version</p>
       </div>
       <SliderContainer>
@@ -59,7 +60,7 @@ function App() {
           <ChevronLeftIcon />
         </Button>
         <ImageList cols={10}>
-          {data.map((item, index) => (
+          {!!data?.length && data.map((item, index) => (
             <ImageItem key={item.id} onClick={() => handleImgClick(index)}>
               <img
                 srcSet={`${item.thumbnailUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}

@@ -23,3 +23,5 @@ jest
 - add jest for unit tests
 - fetch album 1's photos from API
 - add material-ui and styled-components
+- add JSON Placeholder as a package on /server
+- use JSON Placeholder to create a server for data to be queried
