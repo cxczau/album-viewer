@@ -19,14 +19,12 @@ const Carousel = () => {
 
   useEffect(() => {
     fetch(`${ALBUMS_API_ROUTE}/1/photos?page=${page}`)
-    // fetch(`${JSON_PLACEHOLDER_ROUTE}/albums/1/photos?_page=${page}`)
       .then(response => response.json())
       .then(json => {
         const { data, last, total } = json;
         setData(data);
         setTotalCount(total);
         setLastPage(last);
-        console.log(data);
       })
   }, [page]);
 
@@ -45,8 +43,6 @@ const Carousel = () => {
   const handlePrevPage = () => {
     setPage(page - 1);
   }
-
-  console.log(page, lastPage);
 
   return (
     <PageContainer>

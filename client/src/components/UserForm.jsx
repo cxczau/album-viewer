@@ -18,8 +18,10 @@ const UserForm = () => {
   const [form, setForm] = useState(DEFAULT_FORM_STATE);
   const [inflight, setInflight] = useState(false);
   
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setInflight(true);
+
     fetch(USERS_API_ROUTE, {
       method: "POST",
       body: JSON.stringify(form),
@@ -29,7 +31,7 @@ const UserForm = () => {
       }
     })
       .then(response => response.json())
-      .then(json => console.log(json));
+      .then(() => setInflight(false));
   }
 
   const handleFormChange = (e) => {
@@ -40,29 +42,31 @@ const UserForm = () => {
   }
 
   return (
-    <PageContainer>
-      <div>
-        <h1>Create User Form</h1>
-      </div>
-      <Paper elevation={3} style={{padding: 26}}>
-        <form onSubmit={handleSubmit} action={handleSubmit}>
-          {FORM_FIELDS.map(field => (
-            <StyledTextField
-              type={field.type}
-              variant='outlined'
-              color='secondary'
-              label={field.label}
-              name={field.name}
-              onChange={handleFormChange}
-              value={form[field.name]}
-              fullWidth
-              required={field.required}
-            />
-          ))}
-          <Button variant="outlined" color="secondary" type="submit" disabled={inflight}>Register</Button>
-        </form>
-      </Paper>
-    </PageContainer>
+    <>
+      <PageContainer>
+        <div>
+          <h1>Create User Form</h1>
+        </div>
+        <Paper elevation={3} style={{padding: 26}}>
+          <form onSubmit={handleSubmit} action={handleSubmit}>
+            {FORM_FIELDS.map(field => (
+              <StyledTextField
+                type={field.type}
+                variant='outlined'
+                color='secondary'
+                label={field.label}
+                name={field.name}
+                onChange={handleFormChange}
+                value={form[field.name]}
+                fullWidth
+                required={field.required}
+              />
+            ))}
+            <Button variant="outlined" color="secondary" type="submit" disabled={inflight}>Register</Button>
+          </form>
+        </Paper>
+      </PageContainer>
+    </>
   );
 }
 
