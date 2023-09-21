@@ -29,6 +29,6 @@ jest
 - Albums API
 - Users API
 - Users form
-- Pass 201 to front end
-
-- jest test for /users POST
+- Pass response info to front end
+- jest test for sanitizeUser
+- jest test for createUser

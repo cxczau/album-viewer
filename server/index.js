@@ -1,5 +1,5 @@
 const express = require("express");
-const createUser = require("./users");
+const { createUser } = require("./users");
 var fetch = require('node-fetch');
 
 const PORT = process.env.PORT || 3001;
@@ -30,16 +30,6 @@ app.post("/api/users", async (req, res) => {
   const response = await createUser(req);
   res.json(response);
 });
-
-app.post("/api/error", async (req, res) => {
-  const response = await fetch(`http://127.0.0.1:3004/error`);
-  const { status, ok, statusText: message } = response;
-  res.json({
-    status,
-    ok,
-    message
-  });
-})
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

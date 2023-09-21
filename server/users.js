@@ -24,8 +24,6 @@ const createUser = async ({ body }) => {
       'Content-Type': 'application/json'
     },
   });
-
-  console.log(response);
   
   const data = await response.json();
   return {
