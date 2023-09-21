@@ -16,11 +16,14 @@ app.get("/api", (req, res) => {
 app.get("/api/albums/:id/photos", async (req, res) => {
   const response = await fetch(`http://127.0.0.1:3004/albums/${req.params.id}/photos?_page=${req.query.page || 0}`);
   const data = await response.json();
-  res.json({ data, last: Math.ceil(response.headers.get('x-total-count') / 10), total: response.headers.get('x-total-count') });
+  res.json({
+    data,
+    last: Math.ceil(response.headers.get('x-total-count') / 10),
+    total: response.headers.get('x-total-count')
+  });
 });
 
 app.post("/api/users", async (req, res) => {
-  console.log(req.body);
   const response = await fetch(`http://127.0.0.1:3004/users`, {
     method: 'POST',
     body: JSON.stringify(req.body),

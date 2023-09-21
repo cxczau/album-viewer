@@ -25,3 +25,8 @@ jest
 - add material-ui and styled-components
 - add JSON Placeholder as a package on /server
 - use JSON Placeholder to create a server for data to be queried
+- Albums Front-end carousel
+- Albums API
+- Users API
+- Users form
+- Pass 201 to front end
