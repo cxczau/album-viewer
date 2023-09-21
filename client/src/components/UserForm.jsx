@@ -3,9 +3,8 @@ import styled from 'styled-components';
 
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
 
-import { PageContainer } from "../styled";
+import { Card, PageContainer } from "../styled";
 import { USERS_API_ROUTE } from "../constants/httpRoutes";
 
 const DEFAULT_FORM_STATE = {
@@ -47,7 +46,7 @@ const UserForm = () => {
         <div>
           <h1>Create User Form</h1>
         </div>
-        <Paper elevation={3} style={{padding: 26}}>
+        <Card>
           <form onSubmit={handleSubmit} action={handleSubmit}>
             {FORM_FIELDS.map(field => (
               <StyledTextField
@@ -64,7 +63,7 @@ const UserForm = () => {
             ))}
             <Button variant="outlined" color="secondary" type="submit" disabled={inflight}>Register</Button>
           </form>
-        </Paper>
+        </Card>
       </PageContainer>
     </>
   );

@@ -23,3 +23,13 @@ export const SliderContainer = styled.div`
   margin: 0 auto;
   padding: 0 20px;
 `;
+
+export const Card = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: white;
+  border-radius: 14px;
+`;
