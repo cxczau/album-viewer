@@ -14,7 +14,7 @@ app.get("/api/albums/:id", (req, res) => {
   // fetch_album(req.params.id, req.query.page)
   //   .then((data) => res.json(data))
 
-  http.get('http://jsonplaceholder.typicode.com/albums/1/photos?page=0', (resp) => {
+  http.get('http://[::1]:3004/albums/1/photos?page=0', (resp) => {
     let rawData = '';
     res.on('data', (chunk) => { rawData += chunk; });
   

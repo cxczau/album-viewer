@@ -8,6 +8,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 import { ImageContainer, PageContainer, SliderContainer } from "../styled";
+import { LOCALHOST_PLACEHOLDER_ROUTE } from "../constants/httpRoutes";
 
 function App() {
   const [data, setData] = useState([]);
@@ -17,8 +18,8 @@ function App() {
   const [lastPage, setLastPage] = useState(0);
 
   useEffect(() => {
-    // fetch('/api/albums/1/photos?page=0')
-    fetch(`https://jsonplaceholder.typicode.com/albums/1/photos?_page=${page}`)
+    fetch(`${LOCALHOST_PLACEHOLDER_ROUTE}/albums/1/photos?_page=${page}`)
+    // fetch(`${JSON_PLACEHOLDER_ROUTE}/albums/1/photos?_page=${page}`)
       .then(response => {
         const responseTotalCount = response.headers.get('X-Total-Count')
         setTotalCount(responseTotalCount);
